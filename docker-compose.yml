@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  # Application Frontend uniquement
+  auth-frontend:
+    build: .
+    ports:
+      - "3000:80"
+    container_name: auth-frontend
+    environment:
+      # Variables pour accéder aux services locaux
+      - SONAR_HOST=host.docker.internal:9000
+      - JENKINS_HOST=host.docker.internal:8080
+    extra_hosts:
+      # Pour Linux, remplacez par votre IP
+      - "host.docker.internal:host-gateway"
